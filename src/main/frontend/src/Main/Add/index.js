@@ -69,7 +69,7 @@ const Add = ({ history }) => {
               await API.post("/post", values);
               history.push("/");
             } catch (error) {
-              error.getMessage();
+              console.log(error.message);
             } finally {
               setSubmitting(false);
             }

@@ -30,7 +30,7 @@ public class PostController {
 	@CrossOrigin
 	@GetMapping("/posts")
 	Collection<Post> posts() {
-		return postRepository.findAll();
+		return postRepository.findByOrderByPostDateDesc();
 	}
 	
 	@CrossOrigin
