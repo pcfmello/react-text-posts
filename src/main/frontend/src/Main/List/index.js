@@ -35,7 +35,7 @@ const List = () => {
 
   return (
     <React.Fragment>
-      {posts.length &&
+      {!!posts.length &&
         posts.map(post => <PostCard key={post.id} {...{ post }} />)}
       {!posts.length && (
         <div

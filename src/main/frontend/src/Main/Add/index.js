@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -44,7 +45,7 @@ const validationSchema = Yup.object().shape({
     .required("Mensagem é obrigatória")
 });
 
-const Add = () => {
+const Add = ({ history }) => {
   const classes = useStyles();
 
   return (
@@ -65,12 +66,12 @@ const Add = () => {
           onSubmit={async (values, { setSubmitting }) => {
             try {
               setSubmitting(true);
-              const response = await API.post("/post", values);
-              setSubmitting(false);
-              console.log(response);
+              await API.post("/post", values);
+              history.push("/");
             } catch (error) {
+              error.getMessage();
+            } finally {
               setSubmitting(false);
-              console.log(error);
             }
           }}
         >
@@ -158,6 +159,10 @@ const Add = () => {
       </CardActions>
     </Card>
   );
+};
+
+Add.propTypes = {
+  history: PropTypes.object.isRequired
 };
 
 export default Add;
