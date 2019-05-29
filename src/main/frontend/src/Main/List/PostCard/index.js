@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import API from "../../../Api";
 import moment from "moment";
 import "moment/locale/pt-br";
 
@@ -48,19 +49,14 @@ const useStyles = makeStyles(theme => ({
 const PostCard = ({ post }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
-  const [isVoted, setIsVoted] = useState(false);
 
   const handleExpandClick = () => setExpanded(!expanded);
 
-  const vote = () => {
-    if (!isVoted) {
-      // Criar função para incluir voto backend
-      setIsVoted(true);
-      console.log("up vote");
-    } else {
-      // Criar função para retirar voto backend
-      setIsVoted(false);
-      console.log("down vote");
+  const vote = async () => {
+    try {
+      const postChanged = await API.put(`/post/${post.id}`);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -81,11 +77,7 @@ const PostCard = ({ post }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton
-          aria-label="Up vote"
-          className={isVoted ? classes.postIsVoted : classes.postIsNotVoted}
-          onClick={vote}
-        >
+        <IconButton aria-label="Up vote" onClick={vote}>
           <Favorite className={classes.favoriteIcon} />
         </IconButton>
         <Typography variant="body2" color="textSecondary" component="p">

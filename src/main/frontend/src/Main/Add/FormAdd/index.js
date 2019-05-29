@@ -54,7 +54,6 @@ const FormAdd = ({ history }) => {
         <form
           id="PostForm"
           noValidate
-          autoComplete="off"
           className={classes.form}
           onSubmit={handleSubmit}
         >
@@ -67,6 +66,7 @@ const FormAdd = ({ history }) => {
               onChange={handleChange}
               margin="normal"
               error={errors.owner && touched.owner}
+              autoComplete={0}
             />
             {errors.owner && touched.owner && (
               <FormHelperText id="owner-error">{errors.owner}</FormHelperText>
@@ -80,6 +80,7 @@ const FormAdd = ({ history }) => {
               onChange={handleChange}
               margin="normal"
               error={errors.email && touched.email}
+              autoComplete={0}
             />
             {errors.email && touched.email && (
               <FormHelperText id="email-error">{errors.email}</FormHelperText>

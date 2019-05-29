@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1)
   },
   cardActions: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    paddingTop: 0
   }
 }));
 
