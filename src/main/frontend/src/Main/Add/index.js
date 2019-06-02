@@ -1,23 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
   Card,
   CardActions,
   CardContent,
-  Typography,
-  makeStyles
+  Typography
 } from "@material-ui/core";
 
 import Form from "./FormAdd";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    marginBottom: theme.spacing(1)
-  },
-  cardActions: {
-    padding: theme.spacing(2),
-    paddingTop: 0
+    marginBottom: theme.spacing(1),
+
+    "& .card-actions": {
+      padding: theme.spacing(2),
+      paddingTop: 0
+    }
   }
 }));
 
@@ -37,7 +38,7 @@ const Add = () => {
         </Typography>
         <Form />
       </CardContent>
-      <CardActions className={classes.cardActions}>
+      <CardActions className="card-actions">
         <Button
           type="submit"
           form="PostForm"

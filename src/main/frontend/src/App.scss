@@ -1,10 +1,5 @@
 .App {
-  max-width: 800px;
+  min-width: 320px;
   margin: auto;
-  padding: 8px 8px 0;
   height: calc(100vh - 88px);
-}
-
-.App-link {
-  color: #61dafb;
 }
