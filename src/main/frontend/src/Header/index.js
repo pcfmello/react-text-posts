@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { Button, makeStyles, Hidden } from "@material-ui/core";
 import logo from "./logo.svg";
 
 const useStyles = makeStyles(theme => ({
@@ -16,11 +16,27 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     zIndex: 1,
 
-    "& div": {
+    "& .elements": {
       width: 800,
       margin: "0 auto",
       display: "flex",
-      alignItems: "center"
+      justifyContent: "space-between",
+      alignItems: "center",
+
+      "& .title": {
+        display: "flex",
+        alignItems: "center",
+
+        "& .logo": {
+          animation: "$appLogoSpin infinite 20s linear",
+          pointerEvents: "none",
+          objectFit: "cover"
+        }
+      },
+      "& .add": {
+        marginRight: theme.spacing(1),
+        textDecoration: "none"
+      }
     }
   },
   "@keyframes appLogoSpin": {
@@ -30,11 +46,6 @@ const useStyles = makeStyles(theme => ({
     to: {
       transform: "rotate(360deg)"
     }
-  },
-  headerLogo: {
-    animation: "$appLogoSpin infinite 20s linear",
-    pointerEvents: "none",
-    objectFit: "cover"
   }
 }));
 
@@ -43,11 +54,18 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      <div>
-        <img src={logo} className={classes.headerLogo} alt="logo" height="50" />
-        <Typography variant="button" gutterBottom>
+      <div className="elements">
+        <div className="title">
+          <img src={logo} className="logo" alt="logo" height="50" />
           React Text Posts
-        </Typography>
+        </div>
+        <Hidden xsDown>
+          <Link to="/add" className="add">
+            <Button variant="contained" aria-label="Add" disableFocusRipple>
+              Novo Post
+            </Button>
+          </Link>
+        </Hidden>
       </div>
     </header>
   );
