@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button, makeStyles, Hidden } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button, Hidden } from "@material-ui/core";
+import AddLink from "../common/AddLink";
 import logo from "./logo.svg";
 
 const useStyles = makeStyles(theme => ({
@@ -18,7 +19,9 @@ const useStyles = makeStyles(theme => ({
 
     "& .elements": {
       width: 800,
+      minWidth: 320,
       margin: "0 auto",
+      paddingRight: 8,
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -32,10 +35,6 @@ const useStyles = makeStyles(theme => ({
           pointerEvents: "none",
           objectFit: "cover"
         }
-      },
-      "& .add": {
-        marginRight: theme.spacing(1),
-        textDecoration: "none"
       }
     }
   },
@@ -60,11 +59,16 @@ const Header = () => {
           React Text Posts
         </div>
         <Hidden xsDown>
-          <Link to="/add" className="add">
-            <Button variant="contained" aria-label="Add" disableFocusRipple>
+          <AddLink>
+            <Button
+              className="add"
+              variant="contained"
+              aria-label="Add"
+              disableFocusRipple
+            >
               Novo Post
             </Button>
-          </Link>
+          </AddLink>
         </Hidden>
       </div>
     </header>

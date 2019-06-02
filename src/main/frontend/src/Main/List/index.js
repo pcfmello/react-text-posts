@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from "react";
 import API from "../../Api";
 import PostCard from "./PostCard";
-import { Link } from "react-router-dom";
 import { Fab, Typography, Hidden } from "@material-ui/core";
 import { Add, Reorder } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import AddLink from "../../common/AddLink";
 
 const useStyles = makeStyles(theme => ({
-  footer: {
-    margin: theme.spacing(2),
-    position: "fixed",
-    bottom: 0,
-    right: 0
-  },
-  addIconButton: {
-    color: "white",
-    backgroundColor: "#282c34"
-  },
-  emptyList: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  emptyListIcon: {
-    color: "rgba(0, 0, 0, 0.54)",
-    fontSize: "7em"
-  },
-  emptyListText: {
-    fontSize: "1.6em"
+  container: {
+    "& .footer": {
+      margin: theme.spacing(2),
+      position: "fixed",
+      bottom: 0,
+      right: 0,
+
+      "& .add-icon-button": {
+        color: "white",
+        backgroundColor: "#282c34"
+      }
+    },
+
+    "& .empty-list": {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+
+      "& .empty-list-icon": {
+        color: "rgba(0, 0, 0, 0.54)",
+        fontSize: "7em"
+      },
+
+      "& .empty-list-text": {
+        fontSize: "1.6em"
+      }
+    }
   }
 }));
 
@@ -61,7 +67,7 @@ const List = () => {
   };
 
   return (
-    <React.Fragment>
+    <div className={classes.container}>
       {!isLoading && (
         <div>
           {!!posts.length &&
@@ -69,10 +75,10 @@ const List = () => {
               <PostCard key={post.id} {...{ post, handleUpVote }} />
             ))}
           {!posts.length && (
-            <div className={classes.emptyList}>
-              <Reorder className={classes.emptyListIcon} />
+            <div className="empty-list">
+              <Reorder className="empty-list-icon" />
               <Typography
-                className={classes.emptyListText}
+                className="empty-list-text"
                 variant="body2"
                 color="textSecondary"
                 component="p"
@@ -84,15 +90,15 @@ const List = () => {
         </div>
       )}
       <Hidden smUp>
-        <div className={classes.footer}>
-          <Link to="/add">
-            <Fab className={classes.addIconButton} aria-label="Add">
+        <div className="footer">
+          <AddLink>
+            <Fab className="add-icon-button" aria-label="Add">
               <Add />
             </Fab>
-          </Link>
+          </AddLink>
         </div>
       </Hidden>
-    </React.Fragment>
+    </div>
   );
 };
 
