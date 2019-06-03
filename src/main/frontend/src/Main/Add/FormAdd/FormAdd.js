@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape({
     .required("Mensagem é obrigatória")
 });
 
-const FormAdd = ({ history }) => {
+const FormAdd = ({ history, showLoading, hideLoading }) => {
   const classes = useStyles();
 
   return (
@@ -36,6 +36,7 @@ const FormAdd = ({ history }) => {
       initialValues={{ owner: "", email: "", message: "" }}
       onSubmit={async (values, { setSubmitting }) => {
         try {
+          showLoading();
           setSubmitting(true);
           await API.post("/post", values);
           history.push("/");
@@ -43,6 +44,7 @@ const FormAdd = ({ history }) => {
           console.log(error.message);
         } finally {
           setSubmitting(false);
+          hideLoading();
         }
       }}
     >
@@ -104,7 +106,9 @@ const FormAdd = ({ history }) => {
 };
 
 FormAdd.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  showLoading: PropTypes.func.isRequired,
+  hideLoading: PropTypes.func.isRequired
 };
 
 export default withRouter(FormAdd);
