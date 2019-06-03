@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "react-block-ui/style.css";
 import API from "../../Api";
 import PostCard from "./PostCard/PostCard";
 import { Fab, Typography, Hidden } from "@material-ui/core";
