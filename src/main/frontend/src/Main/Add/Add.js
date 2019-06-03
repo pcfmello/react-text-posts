@@ -1,13 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Typography
-} from "@material-ui/core";
+import { Button, Card, CardContent, Typography } from "@material-ui/core";
 
 import Form from "./FormAdd";
 
@@ -17,7 +11,26 @@ const useStyles = makeStyles(theme => ({
 
     "& .card-actions": {
       padding: theme.spacing(2),
-      paddingTop: 0
+      paddingTop: 0,
+      [theme.breakpoints.up("sm")]: {
+        display: "flex",
+        alignItems: "center"
+      },
+
+      "& .button:first-child": {
+        [theme.breakpoints.down("xs")]: {
+          marginBottom: theme.spacing(2)
+        },
+        [theme.breakpoints.up("sm")]: {
+          marginRight: theme.spacing(1)
+        }
+      },
+
+      "& .button:last-child": {
+        [theme.breakpoints.up("sm")]: {
+          marginLeft: theme.spacing(1)
+        }
+      }
     }
   }
 }));
@@ -38,21 +51,21 @@ const Add = () => {
         </Typography>
         <Form />
       </CardContent>
-      <CardActions className="card-actions">
+      <div className="card-actions">
         <Button
+          className="button"
           type="submit"
           form="PostForm"
           variant="contained"
           color="primary"
-          className={classes.button}
           fullWidth
           size="large"
         >
           OK
         </Button>
         <Button
+          className="button"
           variant="contained"
-          className={classes.button}
           fullWidth
           component={Link}
           to="/"
@@ -60,7 +73,7 @@ const Add = () => {
         >
           Cancelar
         </Button>
-      </CardActions>
+      </div>
     </Card>
   );
 };

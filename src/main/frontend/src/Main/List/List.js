@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import "react-block-ui/style.css";
 import API from "../../Api";
 import PostCard from "./PostCard/PostCard";
 import { Fab, Typography, Hidden } from "@material-ui/core";
-import { Add, Reorder } from "@material-ui/icons";
+import { Add, ViewList } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import Loading from "../../common/Loading";
 import AddLink from "../../common/AddLink";
 
 const useStyles = makeStyles(theme => ({
@@ -24,15 +26,21 @@ const useStyles = makeStyles(theme => ({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      justifyContent: "center",
+      height: "50vh",
 
       "& .empty-list-icon": {
         color: "rgba(0, 0, 0, 0.54)",
-        fontSize: "7em"
+        fontSize: "4em"
       },
 
       "& .empty-list-text": {
-        fontSize: "1.6em"
+        fontSize: "1.2em"
       }
+    },
+
+    "& .loading-bullet": {
+      color: "initial"
     }
   }
 }));
@@ -68,36 +76,38 @@ const List = () => {
 
   return (
     <div className={classes.container}>
-      {!isLoading && (
-        <div>
-          {!!posts.length &&
-            posts.map(post => (
-              <PostCard key={post.id} {...{ post, handleUpVote }} />
-            ))}
-          {!posts.length && (
-            <div className="empty-list">
-              <Reorder className="empty-list-icon" />
-              <Typography
-                className="empty-list-text"
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              >
-                Ainda não existem posts
-              </Typography>
-            </div>
-          )}
-        </div>
-      )}
-      <Hidden smUp>
-        <div className="footer">
-          <AddLink>
-            <Fab className="add-icon-button" aria-label="Add">
-              <Add />
-            </Fab>
-          </AddLink>
-        </div>
-      </Hidden>
+      <Loading {...{ isLoading }}>
+        {!isLoading && (
+          <div>
+            {!!posts.length &&
+              posts.map(post => (
+                <PostCard key={post.id} {...{ post, handleUpVote }} />
+              ))}
+            {!posts.length && (
+              <div className="empty-list">
+                <ViewList className="empty-list-icon" />
+                <Typography
+                  className="empty-list-text"
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  Ainda não existem posts
+                </Typography>
+              </div>
+            )}
+          </div>
+        )}
+        <Hidden smUp>
+          <div className="footer">
+            <AddLink>
+              <Fab className="add-icon-button" aria-label="Add">
+                <Add />
+              </Fab>
+            </AddLink>
+          </div>
+        </Hidden>
+      </Loading>
     </div>
   );
 };
