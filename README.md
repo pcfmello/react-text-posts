@@ -16,7 +16,7 @@ It's a project open source developed to post some texts and people can to read a
 * [Moment JS](https://momentjs.com/)
 
 ## How to run?
-It's needs necessary the [Docker](https://docs.docker.com) installed.
+It needs necessary have [Docker](https://docs.docker.com) installed.
 
 * Linux or Mac:  
 ```$ mvn clean package docker:build && docker run -it -p 9999:8090 react-text-posts```  
