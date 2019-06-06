@@ -19,7 +19,7 @@ It's a project open source developed to post some texts and people can to read a
 It needs necessary have [Docker](https://docs.docker.com) installed.
 
 * Linux or Mac:  
-```$ mvn clean package docker:build && docker run -it -p 9999:8090 react-text-posts```  
+```$ ./mvnw clean package docker:build && docker run -it -p 9999:8090 react-text-posts```  
 
 * Windows:  
 ```$ mvnw clean package docker:build && docker run -it -p 9999:8090 react-text-posts```  
