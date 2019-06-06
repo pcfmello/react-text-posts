@@ -60,7 +60,7 @@ const List = () => {
       const response = await API.get("/posts");
       setPosts(response.data);
     } catch (error) {
-      console.log(error);
+      alert("Erro ao publicar ao listar os posts! Tente novamente mais tarde.");
     } finally {
       setIsLoading(false);
     }

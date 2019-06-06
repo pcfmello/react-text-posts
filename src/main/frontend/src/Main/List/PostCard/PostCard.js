@@ -35,7 +35,7 @@ const PostCard = ({ post, handleUpVote }) => {
       await API.put(`/post/${post.id}`);
       handleUpVote(post.id);
     } catch (error) {
-      console.log(error.message);
+      alert("Erro ao aplicar voto ao post! Tente novamente mais tarde.");
     }
   };
 

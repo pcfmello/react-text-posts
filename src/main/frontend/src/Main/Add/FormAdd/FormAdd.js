@@ -41,7 +41,7 @@ const FormAdd = ({ history, showLoading, hideLoading }) => {
           await API.post("/post", values);
           history.push("/");
         } catch (error) {
-          console.log(error.message);
+          alert("Erro ao publicar o post! Tente novamente mais tarde.");
         } finally {
           setSubmitting(false);
           hideLoading();
