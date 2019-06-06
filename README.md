@@ -17,11 +17,12 @@ It's a project open source developed to post some texts and people can to read a
 
 ## How to run?
 It's needs necessary the __Docker__ installed.
-```
-$ git clone https://github.com/pcfmello/react-text-posts.git
-$ cd react-text-posts
-$ mvn clean package docker:build && docker run -it -p 9999:8090 react-text-posts
-```
+
+* Linux or Mac:  
+```$ mvn clean package docker:build && docker run -it -p 9999:8090 react-text-posts```  
+
+* Windows:  
+```$ mvnw clean package docker:build && docker run -it -p 9999:8090 react-text-posts```  
 
 ## Running project
 Openning the web browser and access ```http://localhost:9999```
