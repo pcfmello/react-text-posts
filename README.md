@@ -15,6 +15,9 @@ It's a project open source developed to post some texts and people can to read a
 * [Axios](https://github.com/axios/axios)
 * [Moment JS](https://momentjs.com/)
 
+## About it Frontend project
+Path to access the content/code is ```./src/main/frontend.```
+
 ## How to run?
 It needs necessary have [Docker](https://docs.docker.com) and [Java JDK 8](https://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html) installed.
 
